@@ -1,0 +1,14 @@
+version: '2'
+services:
+    resourcecheck-app:
+        image: resourcecheck
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://resourcecheck-postgresql:5432/resourceCheck
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    resourcecheck-postgresql:
+        extends:
+            file: postgresql.yml
+            service: resourcecheck-postgresql
